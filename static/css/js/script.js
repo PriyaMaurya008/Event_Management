@@ -1,0 +1,1 @@
+console.log("College Event Management System loaded successfully.");
