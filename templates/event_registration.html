@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 {% block title %}Register for {{ event.name }} | Event Management{% endblock %}
 {% block content %}
-<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button><div><p class="eyebrow">EVENT REGISTRATION</p><h1>Join {{ event.name }}</h1><p>Your registration will be linked to your logged-in account.</p></div></section><section class="registration-layout"><article class="summary-card"><p class="event-date">{{ event.event_date }}</p><h2>{{ event.name }}</h2><p>{{ event.description }}</p><p class="event-location">⌖ {{ event.location }}</p></article><form class="form-card" method="post"><div class="section-heading"><p class="eyebrow">CONFIRM YOUR PLACE</p><h2>Register</h2></div><p class="form-note">You are registering as <strong>{{ current_user }}</strong>.</p><button class="button primary" type="submit">Confirm registration</button></form></section>
+<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">EVENT REGISTRATION</p>
+        <h1>Join {{ event.name }}</h1>
+        <p>Your registration will be linked to your logged-in account.</p>
+    </div>
+</section>
+<section class="registration-layout">
+    <article class="summary-card">
+        <p class="event-date">{{ event.event_date }}</p>
+        <h2>{{ event.name }}</h2>
+        <p>{{ event.description }}</p>
+        <p class="event-location">⌖ {{ event.location }}</p>
+    </article>
+    <form class="form-card" method="post">
+        <div class="section-heading">
+            <p class="eyebrow">CONFIRM YOUR PLACE</p>
+            <h2>Register</h2>
+        </div>
+        <p class="form-note">You are registering as <strong>{{ current_user }}</strong>.</p><button
+            class="button primary" type="submit">Confirm registration</button>
+    </form>
+</section>
 {% endblock %}

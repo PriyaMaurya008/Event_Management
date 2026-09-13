@@ -1,5 +1,25 @@
 {% extends 'base.html' %}
 {% block title %}Calendar | Event Management{% endblock %}
 {% block content %}
-<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button><div><p class="eyebrow">PLAN AHEAD</p><h1>Calendar</h1><p>Explore dates from 2000 through 2050.</p></div></section><section class="calendar-card"><div class="calendar-toolbar">{% if calendar_data.can_previous %}<a class="icon-button" href="?year={{ calendar_data.previous[0] }}&month={{ calendar_data.previous[1] }}" aria-label="Previous month">←</a>{% else %}<span></span>{% endif %}<h2>{{ calendar_data.month_name }} {{ calendar_data.year }}</h2>{% if calendar_data.can_next %}<a class="icon-button" href="?year={{ calendar_data.next[0] }}&month={{ calendar_data.next[1] }}" aria-label="Next month">→</a>{% else %}<span></span>{% endif %}</div><div class="calendar-grid calendar-head"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div><div class="calendar-grid calendar-days">{% for week in calendar_data.weeks %}{% for day in week %}<span class="calendar-day {% if day == 0 %}blank{% endif %}">{% if day %}{{ day }}{% endif %}</span>{% endfor %}{% endfor %}</div></section>
+<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">PLAN AHEAD</p>
+        <h1>Calendar</h1>
+        <p>Explore dates from 2000 through 2050.</p>
+    </div>
+</section>
+<section class="calendar-card">
+    <div class="calendar-toolbar">{% if calendar_data.can_previous %}<a class="icon-button"
+            href="?year={{ calendar_data.previous[0] }}&month={{ calendar_data.previous[1] }}"
+            aria-label="Previous month">←</a>{% else %}<span></span>{% endif %}<h2>{{ calendar_data.month_name }} {{
+            calendar_data.year }}</h2>{% if calendar_data.can_next %}<a class="icon-button"
+            href="?year={{ calendar_data.next[0] }}&month={{ calendar_data.next[1] }}" aria-label="Next month">→</a>{%
+        else %}<span></span>{% endif %}</div>
+    <div class="calendar-grid calendar-head">
+        <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+    </div>
+    <div class="calendar-grid calendar-days">{% for week in calendar_data.weeks %}{% for day in week %}<span
+            class="calendar-day {% if day == 0 %}blank{% endif %}">{% if day %}{{ day }}{% endif %}</span>{% endfor %}{%
+        endfor %}</div>
+</section>
 {% endblock %}

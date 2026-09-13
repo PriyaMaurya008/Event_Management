@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 {% block title %}User Home | Event Management{% endblock %}
 {% block content %}
-<section class="dashboard-hero"><div><p class="eyebrow">YOUR EVENT DESK</p><h1>Good to see you, {{ current_user }}.</h1><p>Find your next gathering, keep track of what came before, and make your voice heard.</p></div></section><section class="feature-grid"><a class="feature-card featured" href="{{ url_for('upcoming_events') }}"><span class="feature-number">01</span><h2>Upcoming Events</h2><p>Discover what is happening next.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('old_events') }}"><span class="feature-number">02</span><h2>Old Events</h2><p>Revisit moments from campus life.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('calendar_page') }}"><span class="feature-number">03</span><h2>Calendar</h2><p>Plan across the academic year.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('feedback') }}"><span class="feature-number">04</span><h2>Feedback</h2><p>Send thoughts to the team.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('about') }}"><span class="feature-number">05</span><h2>About Us</h2><p>Learn about this college project.</p><span class="arrow">↗</span></a><a class="feature-card muted-card" href="{{ url_for('logout') }}"><span class="feature-number">06</span><h2>Logout</h2><p>End your current session.</p><span class="arrow">↗</span></a></section>
+<section class="dashboard-hero">
+    <div>
+        <p class="eyebrow">YOUR EVENT DESK</p>
+        <h1>Good to see you, {{ current_user }}.</h1>
+        <p>Find your next gathering, keep track of what came before, and make your voice heard.</p>
+    </div>
+</section>
+<section class="feature-grid"><a class="feature-card featured" href="{{ url_for('upcoming_events') }}"><span
+            class="feature-number">01</span>
+        <h2>Upcoming Events</h2>
+        <p>Discover what is happening next.</p><span class="arrow">↗</span>
+    </a><a class="feature-card" href="{{ url_for('old_events') }}"><span class="feature-number">02</span>
+        <h2>Old Events</h2>
+        <p>Revisit moments from campus life.</p><span class="arrow">↗</span>
+    </a><a class="feature-card" href="{{ url_for('calendar_page') }}"><span class="feature-number">03</span>
+        <h2>Calendar</h2>
+        <p>Plan across the academic year.</p><span class="arrow">↗</span>
+    </a><a class="feature-card" href="{{ url_for('feedback') }}"><span class="feature-number">04</span>
+        <h2>Feedback</h2>
+        <p>Send thoughts to the team.</p><span class="arrow">↗</span>
+    </a><a class="feature-card" href="{{ url_for('about') }}"><span class="feature-number">05</span>
+        <h2>About Us</h2>
+        <p>Learn about this college project.</p><span class="arrow">↗</span>
+    </a><a class="feature-card muted-card" href="{{ url_for('logout') }}"><span class="feature-number">06</span>
+        <h2>Logout</h2>
+        <p>End your current session.</p><span class="arrow">↗</span>
+    </a></section>
 {% endblock %}

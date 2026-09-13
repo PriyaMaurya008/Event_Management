@@ -1,5 +1,41 @@
 {% extends 'base.html' %}
 {% block title %}Profile | Event Management{% endblock %}
 {% block content %}
-<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button><div><p class="eyebrow">ACCOUNT SETTINGS</p><h1>Your profile</h1><p>Keep your details and preferences up to date.</p></div></section><section class="profile-layout"><div class="profile-card"><div class="avatar large">{% if user.profile_photo %}<img src="{{ url_for('static', filename='uploads/' + user.profile_photo) }}" alt="Profile photo">{% else %}{{ user.name[0]|upper }}{% endif %}</div><h2>{{ user.name }}</h2><p>{{ user.email }}</p><form method="post" action="{{ url_for('profile_photo') }}" enctype="multipart/form-data"><label class="upload-label">Change photo<input type="file" name="photo" accept="image/*" capture="user" required></label><button class="button outline" type="submit">Upload photo</button></form></div><form class="form-card" method="post"><div class="section-heading"><p class="eyebrow">PERSONAL DETAILS</p><h2>Edit profile</h2></div><label>Username<input name="name" value="{{ user.name }}" required></label><label>Email Address<input type="email" name="email" value="{{ user.email }}" required></label><button class="button primary" type="submit">Save changes</button></form><div class="settings-card"><p class="eyebrow">APPEARANCE</p><h2>Theme</h2><p>Choose a quieter light mode or a focused dark mode.</p><form method="post" action="{{ url_for('theme') }}" class="theme-switch"><button name="theme" value="light" class="button {% if theme == 'light' %}primary{% else %}outline{% endif %}" type="submit">Light</button><button name="theme" value="dark" class="button {% if theme == 'dark' %}primary{% else %}outline{% endif %}" type="submit">Dark</button></form><a class="text-link" href="{{ url_for('logout') }}">Logout</a></div></section>
+<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">ACCOUNT SETTINGS</p>
+        <h1>Your profile</h1>
+        <p>Keep your details and preferences up to date.</p>
+    </div>
+</section>
+<section class="profile-layout">
+    <div class="profile-card">
+        <div class="avatar large">{% if user.profile_photo %}<img
+                src="{{ url_for('static', filename='uploads/' + user.profile_photo) }}" alt="Profile photo">{% else %}{{
+            user.name[0]|upper }}{% endif %}</div>
+        <h2>{{ user.name }}</h2>
+        <p>{{ user.email }}</p>
+        <form method="post" action="{{ url_for('profile_photo') }}" enctype="multipart/form-data"><label
+                class="upload-label">Change photo<input type="file" name="photo" accept="image/*" capture="user"
+                    required></label><button class="button outline" type="submit">Upload photo</button></form>
+    </div>
+    <form class="form-card" method="post">
+        <div class="section-heading">
+            <p class="eyebrow">PERSONAL DETAILS</p>
+            <h2>Edit profile</h2>
+        </div><label>Username<input name="name" value="{{ user.name }}" required></label><label>Email Address<input
+                type="email" name="email" value="{{ user.email }}" required></label><button class="button primary"
+            type="submit">Save changes</button>
+    </form>
+    <div class="settings-card">
+        <p class="eyebrow">APPEARANCE</p>
+        <h2>Theme</h2>
+        <p>Choose a quieter light mode or a focused dark mode.</p>
+        <form method="post" action="{{ url_for('theme') }}" class="theme-switch"><button name="theme" value="light"
+                class="button {% if theme == 'light' %}primary{% else %}outline{% endif %}"
+                type="submit">Light</button><button name="theme" value="dark"
+                class="button {% if theme == 'dark' %}primary{% else %}outline{% endif %}" type="submit">Dark</button>
+        </form><a class="text-link" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</section>
 {% endblock %}

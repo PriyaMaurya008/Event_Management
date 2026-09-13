@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% block title %}Feedback | Event Management{% endblock %}
 {% block content %}
-<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button><div><p class="eyebrow">WE ARE LISTENING</p><h1>Feedback</h1><p>Help us make Event Management better for college life.</p></div></section><form class="form-card wide-form" method="post"><label>Your feedback<textarea name="message" rows="9" maxlength="5000" required placeholder="Share your thoughts..."></textarea></label><div class="form-row"><small>Maximum 500 words</small><button class="button primary" type="submit">Send feedback</button></div></form>
+<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">WE ARE LISTENING</p>
+        <h1>Feedback</h1>
+        <p>Help us make Event Management better for college life.</p>
+    </div>
+</section>
+<form class="form-card wide-form" method="post"><label>Your feedback<textarea name="message" rows="9" maxlength="5000"
+            required placeholder="Share your thoughts..."></textarea></label>
+    <div class="form-row"><small>Maximum 500 words</small><button class="button primary" type="submit">Send
+            feedback</button></div>
+</form>
 {% endblock %}

@@ -1,5 +1,39 @@
 {% extends 'base.html' %}
 {% block title %}Admin Home | Event Management{% endblock %}
 {% block content %}
-<section class="dashboard-hero admin-hero"><div><p class="eyebrow">ADMIN CONTROL ROOM</p><h1>Shape the next event.</h1><p>Welcome, {{ current_admin }}. Keep the college calendar useful and current.</p></div></section><section class="feature-grid"><a class="feature-card featured" href="{{ url_for('add_event') }}"><span class="feature-number">01</span><h2>Add Event</h2><p>Publish a new campus gathering.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('delete_event') }}"><span class="feature-number">02</span><h2>Delete Event</h2><p>Remove an upcoming event carefully.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('admin_calendar') }}"><span class="feature-number">03</span><h2>Calendar</h2><p>Review the full date range.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('admin_feedback') }}"><span class="feature-number">04</span><h2>Feedback</h2><p>Send thoughts to the team.</p><span class="arrow">↗</span></a><a class="feature-card" href="{{ url_for('admin_about') }}"><span class="feature-number">05</span><h2>About Us</h2><p>Read the project context.</p><span class="arrow">↗</span></a><a class="feature-card muted-card" href="{{ url_for('admin_logout') }}"><span class="feature-number">06</span><h2>Logout</h2><p>End administrator access.</p><span class="arrow">↗</span></a></section>
+<section class="dashboard-hero admin-hero"><div>
+    <p class="eyebrow">ADMIN CONTROL ROOM</p>
+    <h1>Shape the next event.</h1>
+    <p>Welcome, {{ current_admin }}. Keep the college calendar useful and current.</p></div></section>
+    <section class="feature-grid"><a class="feature-card featured" href="{{ url_for('add_event') }}">
+        <span class="feature-number">01</span>
+        <h2>Add Event</h2>
+        <p>Publish a new campus gathering.</p>
+        <span class="arrow">↗</span></a>
+        <a class="feature-card" href="{{ url_for('delete_event') }}">
+            <span class="feature-number">02</span>
+            <h2>Delete Event</h2>
+            <p>Remove an upcoming event carefully.</p>
+            <span class="arrow">↗</span></a>
+            <a class="feature-card" href="{{ url_for('admin_calendar') }}">
+                <span class="feature-number">03</span>
+                <h2>Calendar</h2>
+                <p>Review the full date range.</p><span class="arrow">↗</span></a>
+                <a class="feature-card" href="{{ url_for('admin_feedback') }}">
+                    <span class="feature-number">04</span>
+                    <h2>Feedback</h2>
+                    <p>Send thoughts to the team.</p>
+                    <span class="arrow">↗</span></a>
+                    <a class="feature-card" href="{{ url_for('admin_about') }}">
+                        <span class="feature-number">05</span>
+                        <h2>About Us</h2>
+                        <p>Read the project context.</p>
+                        <span class="arrow">↗</span></a>
+                    <a class="feature-card muted-card" href="{{ url_for('admin_logout') }}">
+                        <span class="feature-number">06</span>
+                        <h2>Logout</h2>
+                        <p>End administrator access.</p>
+                        <span class="arrow">↗</span>
+                    </a>
+                </section>
 {% endblock %}

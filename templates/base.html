@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en" data-theme="{{ theme }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,25 +8,31 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
+
 <body>
     <header class="topbar">
         <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark">E</span><span>Event Management</span></a>
         {% if current_user or current_admin %}
         <nav class="topnav">
-            {% if current_user %}<a href="{{ url_for('user_home') }}">Home</a><a href="{{ url_for('upcoming_events') }}">Upcoming</a>{% endif %}
+            {% if current_user %}<a href="{{ url_for('user_home') }}">Home</a><a
+                href="{{ url_for('upcoming_events') }}">Upcoming</a>{% endif %}
             {% if current_admin %}<a href="{{ url_for('admin_home') }}">Admin Home</a>{% endif %}
         </nav>
         {% endif %}
         <div class="top-actions">
-            {% if current_user %}<a class="profile-chip" href="{{ url_for('profile') }}">{{ current_user[0]|upper }}</a>{% elif current_admin %}<a class="profile-chip" href="{{ url_for('admin_profile') }}">{{ current_admin[0]|upper }}</a>{% endif %}
+            {% if current_user %}<a class="profile-chip" href="{{ url_for('profile') }}">{{ current_user[0]|upper
+                }}</a>{% elif current_admin %}<a class="profile-chip" href="{{ url_for('admin_profile') }}">{{
+                current_admin[0]|upper }}</a>{% endif %}
         </div>
     </header>
     <main class="page-shell">
         {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+        {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div
+                class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
     </main>
     <footer class="footer">Event Management <span>•</span> College events, thoughtfully organized</footer>
 </body>
+
 </html>
