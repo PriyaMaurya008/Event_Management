@@ -1,0 +1,5 @@
+{% extends 'base.html' %}
+{% block title %}Choose Access | Event Management{% endblock %}
+{% block content %}
+<section class="center-stage narrow-stage"><p class="eyebrow">WELCOME TO EVENTS</p><h1>Who are you?</h1><p class="lede">Choose the space that belongs to you.</p><div class="choice-grid"><a class="choice-card" href="{{ url_for('register') }}"><span class="choice-icon">U</span><strong>User</strong><small>Create an account or explore your events</small></a><a class="choice-card" href="{{ url_for('admin_login') }}"><span class="choice-icon admin">A</span><strong>Admin</strong><small>Manage the college event program</small></a></div></section>
+{% endblock %}
