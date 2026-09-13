@@ -1,8 +1,6 @@
 import calendar
 import os
-import smtplib
 from datetime import date
-from email.message import EmailMessage
 from functools import wraps
 
 import mysql.connector
@@ -10,7 +8,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from werkzeug.security import check_password_hash, generate_password_hash
 from werkzeug.utils import secure_filename
 
-from config import ADMIN_PASSWORD, DB_CONFIG, FEEDBACK_EMAIL
+from config import ADMIN_PASSWORD, DB_CONFIG
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", "event-management-development-key")
@@ -428,34 +426,23 @@ def send_feedback(message, sender_role, sender_id):
     try:
         connection = get_db_connection()
         ensure_schema(connection)
-        cursor = connection.cursor()
+        cursor = connection.cursor(dictionary=True)
         user_id = sender_id if sender_role == "user" else None
         admin_id = sender_id if sender_role == "admin" else None
+        if sender_role == "user":
+            cursor.execute("SELECT email FROM users WHERE id = %s", (sender_id,))
+        else:
+            cursor.execute("SELECT email FROM admins WHERE id = %s", (sender_id,))
+        sender = cursor.fetchone()
+        if not sender:
+            return False
         cursor.execute("INSERT INTO feedback (user_id, admin_id, sender_role, message) VALUES (%s, %s, %s, %s)", (user_id, admin_id, sender_role, message))
         connection.commit()
+        return True
     except mysql.connector.Error:
         return False
     finally:
         close_db(connection, cursor)
-
-    smtp_host = os.environ.get("SMTP_HOST")
-    smtp_user = os.environ.get("SMTP_USER")
-    smtp_password = os.environ.get("SMTP_PASSWORD")
-    if not smtp_host or not smtp_user or not smtp_password:
-        return False
-    email = EmailMessage()
-    email["Subject"] = "Event Management feedback"
-    email["From"] = smtp_user
-    email["To"] = FEEDBACK_EMAIL
-    email.set_content(message)
-    try:
-        with smtplib.SMTP(smtp_host, int(os.environ.get("SMTP_PORT", "587"))) as smtp:
-            smtp.starttls()
-            smtp.login(smtp_user, smtp_password)
-            smtp.send_message(email)
-        return True
-    except (OSError, smtplib.SMTPException, ValueError):
-        return False
 
 
 @app.route("/feedback", methods=["GET", "POST"])
@@ -468,9 +455,9 @@ def feedback():
         flash("Feedback is required and must be 500 words or fewer.", "error")
         return render_template("feedback.html"), 400
     if not send_feedback(message, "user", session["user_id"]):
-        flash("Feedback could not be sent. Configure the email settings first.", "error")
+        flash("Feedback could not be saved. Please try again.", "error")
         return render_template("feedback.html"), 500
-    flash("Thank you. Your feedback was sent.", "success")
+    flash("Thank you. Your feedback was saved.", "success")
     return redirect(url_for("feedback"))
 
 
@@ -658,9 +645,9 @@ def admin_feedback():
         flash("Feedback is required and must be 500 words or fewer.", "error")
         return render_template("feedback.html", admin_view=True), 400
     if not send_feedback(message, "admin", session["admin_id"]):
-        flash("Feedback could not be sent. Configure the email settings first.", "error")
+        flash("Feedback could not be saved. Please try again.", "error")
         return render_template("feedback.html", admin_view=True), 500
-    flash("Thank you. Your feedback was sent.", "success")
+    flash("Thank you. Your feedback was saved.", "success")
     return redirect(url_for("admin_feedback"))
 
 
