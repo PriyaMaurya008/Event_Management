@@ -132,6 +132,10 @@ def test_db():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if "user_id" in session:
+        return redirect(url_for("user_home"))
+    if "admin_id" in session:
+        return redirect(url_for("admin_home"))
     if request.method == "GET":
         return render_template("signin.html")
 
@@ -177,6 +181,10 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if "user_id" in session:
+        return redirect(url_for("user_home"))
+    if "admin_id" in session:
+        return redirect(url_for("admin_home"))
     if request.method == "GET":
         return render_template("login.html")
 
@@ -469,6 +477,10 @@ def about():
 
 @app.route("/admin/login", methods=["GET", "POST"])
 def admin_login():
+    if "admin_id" in session:
+        return redirect(url_for("admin_home"))
+    if "user_id" in session:
+        return redirect(url_for("user_home"))
     if request.method == "GET":
         return render_template("admin_login.html")
     name = request.form.get("name", "").strip()
