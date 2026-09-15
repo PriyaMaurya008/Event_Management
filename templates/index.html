@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Events | Event Management{% endblock %}
+{% block content %}
+<section class="splash-screen" data-splash>
+    <div class="splash-orbit"></div>
+    <div class="splash-copy">
+        <p class="eyebrow">COLLEGE EVENT MANAGEMENT</p>
+        <h1>Events</h1>
+        <p>Gather. Participate. Remember.</p>
+    </div>
+    <p class="signature">~Priya Maurya</p>
+</section>
+<script>setTimeout(function () { window.location.href = "{{ url_for('role_selection') }}"; }, 3000);</script>
+{% endblock %}

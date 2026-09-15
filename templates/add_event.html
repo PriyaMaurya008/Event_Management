@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Add Event | Event Management{% endblock %}
+{% block content %}
+<section class="content-heading with-back">
+    <button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">EVENT PROGRAM</p>
+        <h1>Add an event</h1>
+        <p>Event IDs are generated automatically by the database.</p>
+    </div>
+    </section>
+    <section class="admin-workspace">
+        <form class="form-card" method="post">
+            <div class="section-heading">
+                <p class="eyebrow">NEW EVENT</p>
+                <h2>Event details</h2>
+            </div>
+            <label>Event Name<input name="name" required maxlength="100"></label>
+            <label>Description<textarea name="description" rows="5"></textarea></label>
+            <label>Event Date<input type="date" name="event_date" required></label>
+            <label>Location<input name="location" required maxlength="150"></label>
+            <button class="button primary" type="submit">Add event</button>
+        </form>
+        <div>
+            <p class="eyebrow">CURRENT PROGRAM</p>
+            <div class="mini-list">
+                {% for event in events %}
+                    <div class="mini-list-item">
+                        <strong>{{ event.name }}</strong>
+                        <span>{{ event.event_date }}</span>
+                    </div>
+                {% else %}
+                    <p class="empty-copy">No events yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+{% endblock %}

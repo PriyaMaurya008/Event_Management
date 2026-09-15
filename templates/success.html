@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Registration Confirmed | Event Management{% endblock %}
+{% block content %}
+<section class="center-stage success-stage">
+    <div class="success-mark">✓</div>
+    <p class="eyebrow">REGISTRATION COMPLETE</p>
+    <h1>You are on the list.</h1>
+    <p>Your registration for <strong>{{ event.name }}</strong> was successful.</p>
+    <div class="summary-card compact">
+        <p>{{ event.event_date }}</p>
+        <p>{{ event.location }}</p>
+    </div><a class="button primary" href="{{ url_for('upcoming_events') }}">Back to upcoming events</a>
+</section>
+{% endblock %}

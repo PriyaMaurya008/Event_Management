@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Admin Access | Event Management{% endblock %}
+{% block content %}
+<section class="auth-layout">
+    <div class="auth-intro admin-intro">
+        <p class="eyebrow">PROGRAM CONTROL</p>
+        <h1>Welcome, administrator.</h1>
+        <p>Manage the events that shape campus life.</p>
+    </div>
+    <form class="form-card" method="post">
+        <div class="section-heading">
+            <p class="eyebrow">ADMIN ACCESS</p>
+            <h2>Sign In / Login</h2>
+            <p>Sign in creates your admin profile; Login returns you to it.</p>
+        </div>
+        <label>Admin Name<input name="name" required autocomplete="name"></label>
+        <label>Email Address<input type="email" name="email" required autocomplete="email"></label>
+        <label>Password<input type="password" name="password" required autocomplete="current-password"></label>
+        <button class="button primary" type="submit">Enter Admin Home</button>
+        <p class="form-foot">
+            <a href="{{ url_for('role_selection') }}">← Choose another role</a>
+        </p>
+    </form>
+</section>
+{% endblock %}

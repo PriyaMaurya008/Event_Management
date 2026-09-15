@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}{{ event.name }} | Event Management{% endblock %}
+{% block content %}
+<section class="content-heading with-back"><button class="back-button" data-back aria-label="Go back">←</button>
+    <div>
+        <p class="eyebrow">EVENT DETAILS</p>
+        <h1>{{ event.name }}</h1>
+        <p>Everything you need before you join us.</p>
+    </div>
+</section>
+<article class="detail-card">
+    <div class="detail-main">
+        <p class="eyebrow">ABOUT THIS EVENT</p>
+        <p class="detail-description">{{ event.description or 'Join your college community for this upcoming event.' }}
+        </p>
+    </div>
+    <dl class="detail-list">
+        <div>
+            <dt>Date</dt>
+            <dd>{{ event.event_date }}</dd>
+        </div>
+        <div>
+            <dt>Location</dt>
+            <dd>{{ event.location }}</dd>
+        </div>
+    </dl><a class="button primary" href="{{ url_for('register_event', event_id=event.id) }}">Register for event</a>
+</article>
+{% endblock %}
